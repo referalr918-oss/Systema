@@ -1,0 +1,17 @@
+{
+  "name": "systema-dnya",
+  "version": "1.0.0",
+  "description": "Система Дня — single-file HTML5 app (soul, movement, English, career) packaged as Android APK via Capacitor",
+  "private": true,
+  "scripts": {
+    "build:apk": "cap sync android && cd android && ./gradlew assembleDebug",
+    "sync": "cap sync"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/core": "^8.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.0.0"
+  }
+}
