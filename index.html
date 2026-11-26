@@ -2,7 +2,7 @@
 <html lang="uk" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="theme-color" content="#0f172a" />
@@ -63,9 +63,41 @@
       background: rgba(71, 85, 105, 0.7);
       border-radius: 9999px;
     }
+    @media (max-width: 639px) {
+      html { font-size: 18px; }
+      #mainNav {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 50;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        background: rgba(2, 6, 23, 0.97);
+        padding-bottom: calc(0.375rem + env(safe-area-inset-bottom));
+      }
+      .nav-tab-btn {
+        flex-direction: column;
+        gap: 0.15rem;
+        padding: 0.5rem 0.25rem;
+        text-align: center;
+      }
+      .nav-tab-btn .tab-icon { font-size: 1.35rem; line-height: 1.2; }
+      .nav-tab-btn .tab-label {
+        font-size: 0.66rem;
+        line-height: 1.15;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+      }
+    }
   </style>
 </head>
-<body class="min-h-screen pb-24 selection:bg-emerald-500 selection:text-white">
+<body class="min-h-screen pb-24 max-sm:pb-40 selection:bg-emerald-500 selection:text-white">
 
   <!-- Top Header -->
   <header class="sticky top-0 z-40 glass-card border-b border-slate-800/80 px-3 sm:px-6 py-3">
@@ -77,7 +109,7 @@
         <div>
           <div class="flex items-center gap-2">
             <h1 class="text-base sm:text-lg font-bold tracking-tight text-white">Рух & Тренувальна Зона</h1>
-            <span id="headerStatusBadge" class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+            <span id="headerStatusBadge" class="text-[13px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
               Активний
             </span>
           </div>
@@ -88,7 +120,7 @@
       <div class="flex items-center gap-2">
         <div class="text-right px-2.5 py-1 rounded-lg bg-slate-900/90 border border-slate-800">
           <div id="liveClockDisplay" class="text-sm font-mono font-bold text-emerald-400">12:00:00</div>
-          <div id="liveDayDisplay" class="text-[10px] text-slate-400">Пн–Пт Графік</div>
+          <div id="liveDayDisplay" class="text-[12px] text-slate-400">Пн–Пт Графік</div>
         </div>
         <button id="btnToggleMute" type="button" class="p-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-200 border border-slate-700 transition" title="Звукові сповіщення та метроном">
           <span id="muteIconText" class="text-xs font-semibold">🔊 Звук</span>
@@ -125,30 +157,30 @@
     </div>
 
     <!-- Navigation Tabs -->
-    <nav class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800" aria-label="Основна навігація">
+    <nav id="mainNav" class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800" aria-label="Основна навігація">
       <button id="navTabSoul" type="button" data-tab="soul" class="nav-tab-btn py-2 px-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 flex items-center justify-center gap-1.5 transition">
-        <span>🕊️</span> <span>Душа & Стійкість</span>
+        <span class="tab-icon">🕊️</span> <span class="tab-label">Душа & Стійкість</span>
       </button>
       <button id="navTabDashboard" type="button" data-tab="dashboard" class="nav-tab-btn active-tab-btn py-2 px-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition">
-        <span>⏱️</span> <span>Графік & Рух</span>
+        <span class="tab-icon">⏱️</span> <span class="tab-label">Графік & Рух</span>
       </button>
       <button id="navTabEnglish" type="button" data-tab="english" class="nav-tab-btn py-2 px-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 flex items-center justify-center gap-1.5 transition">
-        <span>🇬🇧</span> <span>Англ. & 15хв</span>
+        <span class="tab-icon">🇬🇧</span> <span class="tab-label">Англ. & 15хв</span>
       </button>
       <button id="navTabCareer" type="button" data-tab="career" class="nav-tab-btn py-2 px-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 flex items-center justify-center gap-1.5 transition">
-        <span>🚀</span> <span>Кар'єра (TPM)</span>
+        <span class="tab-icon">🚀</span> <span class="tab-label">Кар'єра (TPM)</span>
       </button>
       <button id="navTabExercises" type="button" data-tab="exercises" class="nav-tab-btn py-2 px-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 flex items-center justify-center gap-1.5 transition">
-        <span>🤸</span> <span>6 Вправ × 10 Рівнів (3D)</span>
+        <span class="tab-icon">🤸</span> <span class="tab-label">6 Вправ × 10 Рівнів (3D)</span>
       </button>
       <button id="navTabProgression" type="button" data-tab="progression" class="nav-tab-btn py-2 px-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 flex items-center justify-center gap-1.5 transition">
-        <span>📈</span> <span>Ввід даних & Прогресія</span>
+        <span class="tab-icon">📈</span> <span class="tab-label">Ввід даних & Прогресія</span>
       </button>
       <button id="navTabCamera" type="button" data-tab="camera" class="nav-tab-btn py-2 px-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 flex items-center justify-center gap-1.5 transition">
-        <span>🎥</span> <span>AI-Камера Техніки</span>
+        <span class="tab-icon">🎥</span> <span class="tab-label">AI-Камера Техніки</span>
       </button>
       <button id="navTabSync" type="button" data-tab="sync" class="nav-tab-btn py-2 px-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800/60 flex items-center justify-center gap-1.5 transition">
-        <span>☁️</span> <span>Drive & APK</span>
+        <span class="tab-icon">☁️</span> <span class="tab-label">Drive & APK</span>
       </button>
     </nav>
 
@@ -164,7 +196,7 @@
           <div class="glass-card rounded-2xl p-4 sm:p-5 space-y-4 border border-emerald-500/30">
             <div class="flex items-center justify-between gap-2">
               <div>
-                <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Блок 1 • Обов'язково до 13:00</span>
+                <span class="text-[13px] font-bold uppercase tracking-wider text-emerald-400">Блок 1 • Обов'язково до 13:00</span>
                 <h2 class="text-base sm:text-lg font-bold text-white mt-0.5">Ранкова розминка + 1 Базова Вправа</h2>
               </div>
               <div id="pre13CountdownBadge" class="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-mono font-bold">
@@ -195,7 +227,7 @@
             <div class="bg-slate-900/80 rounded-xl p-3.5 border border-slate-800 space-y-3">
               <div class="flex items-center justify-between gap-2">
                 <div>
-                  <span class="text-[11px] text-amber-400 font-semibold">Крок 2: Вправа дня («Тренувальна зона»)</span>
+                  <span class="text-[13px] text-amber-400 font-semibold">Крок 2: Вправа дня («Тренувальна зона»)</span>
                   <h3 id="dailyExerciseTitle" class="text-sm font-bold text-white mt-0.5">1. Віджимання — Рівень 5</h3>
                 </div>
                 <select id="selectDailyExerciseOverride" aria-label="Вибір вправи дня" class="bg-slate-800 text-xs text-slate-200 rounded-lg px-2.5 py-1.5 border border-slate-700">
@@ -209,10 +241,10 @@
 
               <!-- Edge Case: Missed 13:00 Deadline Split Option -->
               <div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between gap-2">
-                <div class="text-[11px] text-amber-200">
+                <div class="text-[13px] text-amber-200">
                   <strong>Еджкейс після 13:00:</strong> Не встиг зробити до початку зміни?
                 </div>
-                <button id="btnSplitMorningToHourly" type="button" class="shrink-0 px-2.5 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-[11px] font-bold transition">
+                <button id="btnSplitMorningToHourly" type="button" class="shrink-0 px-2.5 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-[13px] font-bold transition">
                   Інтегрувати в 14:00 і 15:00
                 </button>
               </div>
@@ -237,7 +269,7 @@
           <div class="glass-card rounded-2xl p-4 sm:p-5 space-y-4">
             <div class="flex flex-wrap items-center justify-between gap-2">
               <div>
-                <span class="text-[11px] font-bold uppercase tracking-wider text-sky-400">Блок 2 • Сидяча робота (Пн–Пт 13:00–21:00)</span>
+                <span class="text-[13px] font-bold uppercase tracking-wider text-sky-400">Блок 2 • Сидяча робота (Пн–Пт 13:00–21:00)</span>
                 <h2 class="text-base sm:text-lg font-bold text-white mt-0.5">Розумний Таймер Щогодинного Руху</h2>
               </div>
               <div class="flex items-center gap-2">
@@ -256,9 +288,9 @@
                     <circle id="timerProgressCircle" cx="60" cy="60" r="52" stroke="#10b981" stroke-width="10" fill="none" stroke-dasharray="326.7" stroke-dashoffset="65" stroke-linecap="round" class="transition-all duration-500" />
                   </svg>
                   <div class="absolute inset-0 flex flex-col items-center justify-center">
-                    <span id="timerStateLabel" class="text-[10px] font-bold uppercase tracking-wider text-emerald-400">ДО ПЕРЕРВИ</span>
+                    <span id="timerStateLabel" class="text-[12px] font-bold uppercase tracking-wider text-emerald-400">ДО ПЕРЕРВИ</span>
                     <span id="timerCountdownText" class="text-2xl sm:text-3xl font-mono font-extrabold text-white mt-0.5">55:00</span>
-                    <span id="nextBreakClockLabel" class="text-[11px] text-slate-400 mt-0.5">Наступна: 14:00</span>
+                    <span id="nextBreakClockLabel" class="text-[13px] text-slate-400 mt-0.5">Наступна: 14:00</span>
                   </div>
                 </div>
 
@@ -283,23 +315,23 @@
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   <button id="btnEdgeOnCall15" type="button" class="p-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-left transition">
                     <div class="text-xs font-bold text-amber-300">🎧 Я на дзвінку (+15 хв)</div>
-                    <div class="text-[10px] text-slate-400 mt-0.5">Тихий режим + вправи сидячи</div>
+                    <div class="text-[12px] text-slate-400 mt-0.5">Тихий режим + вправи сидячи</div>
                   </button>
                   <button id="btnEdgeAwayPause" type="button" class="p-2.5 rounded-xl bg-purple-500/15 hover:bg-purple-500/25 border border-purple-500/30 text-left transition">
                     <div id="awayBtnTitle" class="text-xs font-bold text-purple-300">☕ Відійшов / Обід</div>
-                    <div class="text-[10px] text-slate-400 mt-0.5">Заморозити таймер сидіння</div>
+                    <div class="text-[12px] text-slate-400 mt-0.5">Заморозити таймер сидіння</div>
                   </button>
                   <button id="btnEdgeMarkMoved" type="button" class="p-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-left transition col-span-2 sm:col-span-1">
                     <div class="text-xs font-bold text-emerald-300">✅ Вже порухався!</div>
-                    <div class="text-[10px] text-slate-400 mt-0.5">Перезапустити відлік (+60 хв)</div>
+                    <div class="text-[12px] text-slate-400 mt-0.5">Перезапустити відлік (+60 хв)</div>
                   </button>
                 </div>
 
                 <!-- Active Micro-Routine Card (Changes dynamically if On Call / Sitting vs Standing) -->
                 <div id="microRoutineCard" class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1.5">
                   <div class="flex items-center justify-between">
-                    <span id="microRoutineBadge" class="text-[11px] font-bold text-sky-400">🏃 Рекомендований 3-хвилинний рух цієї години:</span>
-                    <button id="btnNextMicroRoutine" type="button" class="text-[11px] text-slate-400 hover:text-white underline">Інший варіант ↻</button>
+                    <span id="microRoutineBadge" class="text-[13px] font-bold text-sky-400">🏃 Рекомендований 3-хвилинний рух цієї години:</span>
+                    <button id="btnNextMicroRoutine" type="button" class="text-[13px] text-slate-400 hover:text-white underline">Інший варіант ↻</button>
                   </div>
                   <p id="microRoutineText" class="text-xs text-slate-200 leading-relaxed">
                     Встань із-за столу: 20 кроків на місці з високим підніманням колін + 10 розведень рук назад для розкриття грудної клітки + 30 сек нахилів тазу.
@@ -312,7 +344,7 @@
             <div class="space-y-2">
               <div class="flex flex-wrap items-center justify-between gap-2">
                 <span class="text-xs font-bold text-slate-300">Шкала робочого дня (клікни по слоту, щоб змінити статус):</span>
-                <span class="text-[11px] text-slate-400">🟢 Порухався • 🟡 На дзвінку (сидячи) • ⚪ Очікує</span>
+                <span class="text-[13px] text-slate-400">🟢 Порухався • 🟡 На дзвінку (сидячи) • ⚪ Очікує</span>
               </div>
               <div id="hourlySlotsGrid" class="grid grid-cols-4 sm:grid-cols-8 gap-2">
                 <!-- Populated by JS -->
@@ -323,7 +355,7 @@
             <div class="bg-slate-900/70 rounded-xl p-3.5 border border-slate-800 space-y-3">
               <div class="flex items-center justify-between">
                 <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300">⚙️ Гнучкі налаштування зміни та Еджкейсів</h3>
-                <span class="text-[11px] text-emerald-400">Зберігається автоматично</span>
+                <span class="text-[13px] text-emerald-400">Зберігається автоматично</span>
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
                 <div>
@@ -393,7 +425,7 @@
       <div class="glass-card rounded-2xl p-3.5 space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div>
-            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Пол Вейд • «Тренувальна Зона» (Convict Conditioning)</span>
+            <span class="text-[13px] font-bold uppercase tracking-wider text-emerald-400">Пол Вейд • «Тренувальна Зона» (Convict Conditioning)</span>
             <h2 class="text-base sm:text-lg font-bold text-white">Велика Шістка: Обери вправу та рівень (1–10)</h2>
           </div>
           <a href="https://www.scribd.com/document/379785062/Convict-Conditioning-Summary" target="_blank" rel="noopener noreferrer" class="text-xs text-emerald-400 hover:text-emerald-300 underline">
@@ -424,7 +456,7 @@
         <div class="lg:col-span-7 glass-card rounded-2xl p-4 flex flex-col justify-between space-y-3">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <span id="viewerStepBadge" class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              <span id="viewerStepBadge" class="text-[13px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                 КРОК 5 • СЕРЕДНЯ СКЛАДНІСТЬ
               </span>
               <h3 id="viewerExerciseName" class="text-base sm:text-lg font-bold text-white mt-1">
@@ -457,13 +489,13 @@
 
             <!-- HUD Overlay Top-Left: Phase & Joint Angles -->
             <div class="absolute top-3 left-3 bg-slate-900/85 backdrop-blur px-3 py-2 rounded-xl border border-slate-800 pointer-events-none space-y-1">
-              <div class="text-[11px] font-bold text-emerald-400" id="hudPhaseText">Фаза: Опускання (2 сек)</div>
-              <div class="text-[11px] text-slate-300 font-mono" id="hudJointAngleText">Кут у суглобі: 95° • Корпус: 180°</div>
-              <div class="text-[10px] text-slate-400" id="hudPropText">Інвентар: Підлога (без інвентарю)</div>
+              <div class="text-[13px] font-bold text-emerald-400" id="hudPhaseText">Фаза: Опускання (2 сек)</div>
+              <div class="text-[13px] text-slate-300 font-mono" id="hudJointAngleText">Кут у суглобі: 95° • Корпус: 180°</div>
+              <div class="text-[12px] text-slate-400" id="hudPropText">Інвентар: Підлога (без інвентарю)</div>
             </div>
 
             <!-- HUD Overlay Bottom-Right: Drag Hint -->
-            <div class="absolute bottom-3 right-3 bg-slate-900/80 px-2.5 py-1 rounded-lg border border-slate-800 text-[10px] text-slate-400 pointer-events-none">
+            <div class="absolute bottom-3 right-3 bg-slate-900/80 px-2.5 py-1 rounded-lg border border-slate-800 text-[12px] text-slate-400 pointer-events-none">
               🔄 Тягни пальцем або мишею для обертання 360°
             </div>
           </div>
@@ -472,14 +504,14 @@
           <div class="bg-slate-900/90 rounded-xl p-3 border border-slate-800 space-y-2.5">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <div class="flex justify-between text-[11px] text-slate-300 mb-1">
+                <div class="flex justify-between text-[13px] text-slate-300 mb-1">
                   <span>Кут огляду камери (Azimuth):</span>
                   <span id="lblCameraYawValue" class="font-mono text-emerald-400">90°</span>
                 </div>
                 <input id="sliderCameraYaw" type="range" min="0" max="360" value="90" class="w-full h-1.5 bg-slate-700 rounded-lg cursor-pointer" />
               </div>
               <div>
-                <div class="flex justify-between text-[11px] text-slate-300 mb-1">
+                <div class="flex justify-between text-[13px] text-slate-300 mb-1">
                   <span>Фаза руху (Ручний розбір):</span>
                   <span id="lblPhaseScrubValue" class="font-mono text-sky-400">Авто (2-1-2 сек)</span>
                 </div>
@@ -510,7 +542,7 @@
         <div class="lg:col-span-5 glass-card rounded-2xl p-4 sm:p-5 space-y-4 flex flex-col justify-between">
           <div class="space-y-4">
             <div>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">Нормативи Пола Вейда для цього рівня</span>
+              <span class="text-[13px] font-bold uppercase tracking-wider text-amber-400">Нормативи Пола Вейда для цього рівня</span>
               <h3 class="text-sm font-bold text-white mt-0.5">Стандарти підходів та повторень</h3>
               <div id="stepStandardsCards" class="grid grid-cols-3 gap-2 mt-2.5">
                 <!-- Populated by JS -->
@@ -520,7 +552,7 @@
             <div class="bg-slate-900/80 rounded-xl p-3.5 border border-slate-800 space-y-2">
               <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wide">✅ Як правильно виконувати (Техніка):</h4>
               <p id="stepTechniqueText" class="text-xs text-slate-200 leading-relaxed"></p>
-              <div class="pt-1 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+              <div class="pt-1 border-t border-slate-800/80 flex items-center justify-between text-[13px] text-slate-400">
                 <span id="stepBreathingText">🌬 Дихання: Вдих при опусканні, видих на зусиллі</span>
               </div>
             </div>
@@ -561,7 +593,7 @@
         <!-- Left: Log Workout & Instant Progression Verdict (6 cols) -->
         <div class="lg:col-span-6 glass-card rounded-2xl p-4 sm:p-5 space-y-4">
           <div>
-            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Автоматичний Розрахунок Навантаження</span>
+            <span class="text-[13px] font-bold uppercase tracking-wider text-emerald-400">Автоматичний Розрахунок Навантаження</span>
             <h2 class="text-base sm:text-lg font-bold text-white mt-0.5">Запис тренування & Вердикт Прогресії</h2>
             <p class="text-xs text-slate-400 mt-0.5">
               Вкажи, яку вправу та скільки повторень ти зробив — програма сама скаже, коли додати повторення, коли додати підхід і коли перейти на наступний рівень.
@@ -592,21 +624,21 @@
           <div class="space-y-2">
             <div class="flex items-center justify-between">
               <label class="text-xs font-bold text-slate-200" id="logUnitHeaderLabel">Кількість повторень по робочих підходах:</label>
-              <button id="btnFillTargetReps" type="button" class="text-[11px] text-emerald-400 hover:text-emerald-300 underline">
+              <button id="btnFillTargetReps" type="button" class="text-[13px] text-emerald-400 hover:text-emerald-300 underline">
                 Заповнити цільовий норматив
               </button>
             </div>
             <div class="grid grid-cols-3 gap-2.5">
               <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-                <label for="inputSet1Reps" class="block text-[11px] text-slate-400 mb-1">Підхід 1 (основний):</label>
+                <label for="inputSet1Reps" class="block text-[13px] text-slate-400 mb-1">Підхід 1 (основний):</label>
                 <input id="inputSet1Reps" type="number" min="0" max="500" value="12" class="w-full bg-slate-950 text-white font-mono font-bold text-base rounded-lg px-2.5 py-1.5 border border-slate-700" />
               </div>
               <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-                <label for="inputSet2Reps" class="block text-[11px] text-slate-400 mb-1">Підхід 2 (0 якщо 1 сет):</label>
+                <label for="inputSet2Reps" class="block text-[13px] text-slate-400 mb-1">Підхід 2 (0 якщо 1 сет):</label>
                 <input id="inputSet2Reps" type="number" min="0" max="500" value="11" class="w-full bg-slate-950 text-white font-mono font-bold text-base rounded-lg px-2.5 py-1.5 border border-slate-700" />
               </div>
               <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-                <label for="inputSet3Reps" class="block text-[11px] text-slate-400 mb-1">Підхід 3 (для рівнів 1–3):</label>
+                <label for="inputSet3Reps" class="block text-[13px] text-slate-400 mb-1">Підхід 3 (для рівнів 1–3):</label>
                 <input id="inputSet3Reps" type="number" min="0" max="500" value="0" class="w-full bg-slate-950 text-white font-mono font-bold text-base rounded-lg px-2.5 py-1.5 border border-slate-700" />
               </div>
             </div>
@@ -637,7 +669,7 @@
           <div class="glass-card rounded-2xl p-4 sm:p-5 space-y-3">
             <div class="flex items-center justify-between">
               <div>
-                <span class="text-[11px] font-bold uppercase tracking-wider text-sky-400">Карта Прогресу «Великої Шістки»</span>
+                <span class="text-[13px] font-bold uppercase tracking-wider text-sky-400">Карта Прогресу «Великої Шістки»</span>
                 <h3 class="text-base font-bold text-white">Поточні рівні та наступні цілі</h3>
               </div>
               <button id="btnExportBackupJson" type="button" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 border border-slate-700">
@@ -679,8 +711,8 @@
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div>
               <div class="flex items-center gap-2">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-400">Ефемерна AI-Діагностика Техніки</span>
-                <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold">
+                <span class="text-[13px] font-bold uppercase tracking-wider text-indigo-400">Ефемерна AI-Діагностика Техніки</span>
+                <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[12px] font-bold">
                   🔒 0 МБ збережено (Лише RAM)
                 </span>
               </div>
@@ -707,9 +739,9 @@
 
             <!-- Live Rep & Tempo Counter Overlay -->
             <div class="absolute top-3 right-3 bg-slate-900/90 backdrop-blur px-3 py-2 rounded-xl border border-slate-700 text-right">
-              <div class="text-[10px] text-slate-400 uppercase font-bold">Повторень у підході</div>
+              <div class="text-[12px] text-slate-400 uppercase font-bold">Повторень у підході</div>
               <div id="camLiveRepCount" class="text-2xl font-mono font-extrabold text-emerald-400">0</div>
-              <div id="camLiveTempoHint" class="text-[11px] text-sky-300 font-semibold">Темп: Очікування</div>
+              <div id="camLiveTempoHint" class="text-[13px] text-sky-300 font-semibold">Темп: Очікування</div>
             </div>
 
             <!-- Countdown Overlay -->
@@ -745,7 +777,7 @@
           <div class="space-y-4">
             <div class="flex items-center justify-between">
               <div>
-                <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Результат діагностики</span>
+                <span class="text-[13px] font-bold uppercase tracking-wider text-emerald-400">Результат діагностики</span>
                 <h3 class="text-base font-bold text-white">Розбір техніки та темпу</h3>
               </div>
               <div id="camOverallScoreBadge" class="px-3 py-1 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-mono font-extrabold text-base">
@@ -769,7 +801,7 @@
             <!-- Privacy / Ephemeral Proof Box -->
             <div id="camPurgeConfirmationBox" class="p-3 rounded-xl bg-emerald-950/50 border border-emerald-500/30 text-xs text-emerald-200 flex items-center justify-between gap-2">
               <span>✅ <strong>Пам'ять очищена:</strong> Відеопотік знищено з RAM. Жодного файлу не збережено.</span>
-              <span class="font-mono text-[11px] text-emerald-400">0 KB</span>
+              <span class="font-mono text-[13px] text-emerald-400">0 KB</span>
             </div>
           </div>
 
@@ -793,7 +825,7 @@
         <div class="lg:col-span-6 glass-card rounded-2xl p-4 sm:p-5 space-y-4 border border-teal-500/30">
           <div class="flex items-center justify-between">
             <div>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-teal-400">Пріоритет №1 • Внутрішня Опора</span>
+              <span class="text-[13px] font-bold uppercase tracking-wider text-teal-400">Пріоритет №1 • Внутрішня Опора</span>
               <h2 class="text-base sm:text-lg font-bold text-white mt-0.5">Збереження душі та тиша перед днем</h2>
             </div>
             <span id="soulAnchorStreakBadge" class="px-2.5 py-1 rounded-lg bg-teal-500/15 border border-teal-500/30 text-teal-300 text-xs font-bold">
@@ -840,7 +872,7 @@
         <!-- Right: Emotional Barometer & Evening Unloading (6 cols) -->
         <div class="lg:col-span-6 space-y-4">
           <div class="glass-card rounded-2xl p-4 sm:p-5 space-y-3">
-            <span class="text-[11px] font-bold uppercase tracking-wider text-sky-400">Психологічна стійкість</span>
+            <span class="text-[13px] font-bold uppercase tracking-wider text-sky-400">Психологічна стійкість</span>
             <h3 class="text-base font-bold text-white">Барометр внутрішнього стану</h3>
             <p class="text-xs text-slate-400">Оціни рівень напруги або втоми зараз — додаток підкаже безпечний крок:</p>
             <div id="stressLevelButtons" class="grid grid-cols-5 gap-2">
@@ -855,7 +887,7 @@
           <div class="glass-card rounded-2xl p-4 sm:p-5 space-y-3">
             <div class="flex items-center justify-between">
               <div>
-                <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-400">Після 21:00 • Закриття дня</span>
+                <span class="text-[13px] font-bold uppercase tracking-wider text-indigo-400">Після 21:00 • Закриття дня</span>
                 <h3 class="text-base font-bold text-white">Вечірнє розвантаження (не нести роботу в сон)</h3>
               </div>
             </div>
@@ -889,7 +921,7 @@
         <div class="lg:col-span-5 glass-card rounded-2xl p-4 sm:p-5 space-y-4 border border-sky-500/30">
           <div class="flex items-center justify-between">
             <div>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-sky-400">Будні Пн–Пт • До 13:00</span>
+              <span class="text-[13px] font-bold uppercase tracking-wider text-sky-400">Будні Пн–Пт • До 13:00</span>
               <h2 class="text-base sm:text-lg font-bold text-white mt-0.5">15 хв читання англійською вголос</h2>
             </div>
             <span id="readingStreakBadge" class="px-2.5 py-1 rounded-lg bg-sky-500/15 border border-sky-500/30 text-sky-300 text-xs font-bold">
@@ -898,7 +930,7 @@
           </div>
 
           <div class="bg-slate-900/90 rounded-2xl p-4 border border-slate-800 text-center space-y-3">
-            <div class="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Таймер артикуляції та інтонації</div>
+            <div class="text-[13px] uppercase tracking-wider text-slate-400 font-bold">Таймер артикуляції та інтонації</div>
             <div id="readingTimerDisplay" class="text-4xl font-mono font-extrabold text-sky-400">15:00</div>
             <div class="flex flex-wrap items-center justify-center gap-2">
               <button id="btnStartPauseReading" type="button" class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs transition">
@@ -922,7 +954,7 @@
             <div id="readingWeekGrid" class="grid grid-cols-5 gap-2">
               <!-- Populated by JS -->
             </div>
-            <p class="text-[11px] text-slate-400 pt-1">
+            <p class="text-[13px] text-slate-400 pt-1">
               Порада: читай вголос повільно, чітко артикулюючи закінчення слів і паузи між смисловими групами (chunking) — це знімає мовний бар'єр на дзвінках із клієнтами.
             </p>
           </div>
@@ -932,7 +964,7 @@
         <div class="lg:col-span-7 glass-card rounded-2xl p-4 sm:p-5 space-y-4">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Метод «Навчитися вчитися» • Інтервальне повторення</span>
+              <span class="text-[13px] font-bold uppercase tracking-wider text-emerald-400">Метод «Навчитися вчитися» • Інтервальне повторення</span>
               <h2 class="text-base sm:text-lg font-bold text-white mt-0.5">Тренажер фраз і колокацій (IT PM & Переговори)</h2>
             </div>
             <div class="flex items-center gap-2">
@@ -954,7 +986,7 @@
             <div class="text-xs font-bold text-indigo-300">Встав фрази з іншого чату або Miro (по 1 на рядок у форматі: <code>Англійська фраза | Український переклад | Тема</code>):</div>
             <textarea id="textareaEngImport" rows="4" placeholder="To align on expectations | Узгодити очікування | Переговори&#10;Let's circle back on this | Повернімося до цього пізніше | Дипломатія" class="w-full bg-slate-950 text-xs text-white rounded-xl p-2.5 border border-slate-700 font-mono"></textarea>
             <div class="flex items-center justify-between">
-              <span class="text-[11px] text-slate-400">Також підтримується JSON-масив карток.</span>
+              <span class="text-[13px] text-slate-400">Також підтримується JSON-масив карток.</span>
               <button id="btnApplyEngImport" type="button" class="px-3.5 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs">
                 Додати в базу карток
               </button>
@@ -969,7 +1001,7 @@
             </div>
 
             <div class="text-center space-y-2 py-2">
-              <div class="text-[11px] uppercase tracking-wider text-slate-400">Пригадай фразу англійською (Active Recall):</div>
+              <div class="text-[13px] uppercase tracking-wider text-slate-400">Пригадай фразу англійською (Active Recall):</div>
               <div id="srsCardPromptUk" class="text-lg sm:text-xl font-bold text-white leading-snug">
                 Дозвольте мені швидко підсумувати ключові моменти
               </div>
@@ -981,7 +1013,7 @@
                 <div id="srsCardAnswerEn" class="text-lg sm:text-xl font-extrabold text-emerald-400">
                   Let me briefly recap the key takeaways
                 </div>
-                <div id="srsCardNextReviewInfo" class="text-[11px] text-slate-400">Інтервал: нова картка</div>
+                <div id="srsCardNextReviewInfo" class="text-[13px] text-slate-400">Інтервал: нова картка</div>
               </div>
             </div>
 
@@ -991,16 +1023,16 @@
               </button>
               <div id="srsRatingButtons" class="hidden grid grid-cols-4 gap-2">
                 <button type="button" data-srs-grade="1" class="srs-grade-btn py-2 px-1 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 text-xs font-bold">
-                  1. Знову<br><span class="text-[10px] font-normal">Сьогодні</span>
+                  1. Знову<br><span class="text-[12px] font-normal">Сьогодні</span>
                 </button>
                 <button type="button" data-srs-grade="2" class="srs-grade-btn py-2 px-1 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold">
-                  2. Важко<br><span class="text-[10px] font-normal">+1 день</span>
+                  2. Важко<br><span class="text-[12px] font-normal">+1 день</span>
                 </button>
                 <button type="button" data-srs-grade="3" class="srs-grade-btn py-2 px-1 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/40 text-xs font-bold">
-                  3. Добре<br><span class="text-[10px] font-normal">+3 дні</span>
+                  3. Добре<br><span class="text-[12px] font-normal">+3 дні</span>
                 </button>
                 <button type="button" data-srs-grade="4" class="srs-grade-btn py-2 px-1 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-xs font-bold">
-                  4. Легко<br><span class="text-[10px] font-normal">+7 днів</span>
+                  4. Легко<br><span class="text-[12px] font-normal">+7 днів</span>
                 </button>
               </div>
             </div>
@@ -1018,7 +1050,7 @@
         <div class="lg:col-span-6 space-y-4">
           <div class="glass-card rounded-2xl p-4 sm:p-5 space-y-3 border border-amber-500/30">
             <div>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">Анти-рутина • Позиціонування TPM</span>
+              <span class="text-[13px] font-bold uppercase tracking-wider text-amber-400">Анти-рутина • Позиціонування TPM</span>
               <h2 class="text-base sm:text-lg font-bold text-white mt-0.5">1 Головний кар'єрний крок на сьогодні</h2>
               <p class="text-xs text-slate-400 mt-0.5">Щоб щоденна операційка (Monday, Salesforce, дзвінки) не блокувала перехід до Technical Project Manager.</p>
             </div>
@@ -1029,13 +1061,13 @@
               </button>
             </div>
             <div class="flex flex-wrap gap-1.5">
-              <button type="button" class="career-preset-btn text-[11px] px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700" data-text="Аудит 1 сторінки Confluence / IDX-специфікації для MCP">+ Аудит MCP/Confluence</button>
-              <button type="button" class="career-preset-btn text-[11px] px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700" data-text="Оновити 1 досягнення в LinkedIn (Дія + Метрика ROI)">+ LinkedIn (ROI)</button>
-              <button type="button" class="career-preset-btn text-[11px] px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700" data-text="Автоматизувати 1 повторювану задачу в Monday/Slack через AI">+ AI-автоматизація</button>
+              <button type="button" class="career-preset-btn text-[13px] px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700" data-text="Аудит 1 сторінки Confluence / IDX-специфікації для MCP">+ Аудит MCP/Confluence</button>
+              <button type="button" class="career-preset-btn text-[13px] px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700" data-text="Оновити 1 досягнення в LinkedIn (Дія + Метрика ROI)">+ LinkedIn (ROI)</button>
+              <button type="button" class="career-preset-btn text-[13px] px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700" data-text="Автоматизувати 1 повторювану задачу в Monday/Slack через AI">+ AI-автоматизація</button>
             </div>
             <div id="activeCareerStepBox" class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between gap-2">
               <span id="activeCareerStepText" class="text-xs font-semibold text-amber-200">Обраний фокус: не задано</span>
-              <button id="btnCompleteCareerStep" type="button" class="shrink-0 px-2.5 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-[11px]">
+              <button id="btnCompleteCareerStep" type="button" class="shrink-0 px-2.5 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-[13px]">
                 ✅ Виконано -> у Win Log
               </button>
             </div>
@@ -1043,7 +1075,7 @@
 
           <!-- Q4 2026 OKRs -->
           <div class="glass-card rounded-2xl p-4 sm:p-5 space-y-3">
-            <span class="text-[11px] font-bold uppercase tracking-wider text-sky-400">Стратегічні цілі (Q4 2026 OKRs)</span>
+            <span class="text-[13px] font-bold uppercase tracking-wider text-sky-400">Стратегічні цілі (Q4 2026 OKRs)</span>
             <h3 class="text-base font-bold text-white">Ключові результати (Project Coordinator → TPM)</h3>
             <div id="careerOkrList" class="space-y-3">
               <!-- Populated by JS -->
@@ -1054,7 +1086,7 @@
         <!-- Right: Win Log for LinkedIn & Metrics (6 cols) -->
         <div class="lg:col-span-6 glass-card rounded-2xl p-4 sm:p-5 space-y-4">
           <div>
-            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Портфоліо результатів (Action + Metric)</span>
+            <span class="text-[13px] font-bold uppercase tracking-wider text-emerald-400">Портфоліо результатів (Action + Metric)</span>
             <h3 class="text-base font-bold text-white">Банк досягнень для LinkedIn та переговорів</h3>
             <p class="text-xs text-slate-400 mt-0.5">Записуй кожен вимірюваний результат (зекономлений час, швидкість відповіді клієнту, стабільність релізу).</p>
           </div>
@@ -1081,7 +1113,7 @@
         <div class="lg:col-span-6 glass-card rounded-2xl p-4 sm:p-5 space-y-4 border border-sky-500/30">
           <div class="flex items-center justify-between">
             <div>
-              <span class="text-[11px] font-bold uppercase tracking-wider text-sky-400">Хмарна База Даних (Без бекенду)</span>
+              <span class="text-[13px] font-bold uppercase tracking-wider text-sky-400">Хмарна База Даних (Без бекенду)</span>
               <h2 class="text-base sm:text-lg font-bold text-white mt-0.5">Синхронізація з Google Drive цього акаунту</h2>
             </div>
             <span id="driveAuthBadge" class="px-2.5 py-1 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 text-xs font-bold">
@@ -1112,14 +1144,14 @@
                 ⬇️ Завантажити з Drive
               </button>
             </div>
-            <div id="driveSyncLogText" class="text-[11px] text-slate-400 pt-1">
+            <div id="driveSyncLogText" class="text-[13px] text-slate-400 pt-1">
               Статус: локальні зміни автоматично зберігаються в браузері/APK (Offline-First).
             </div>
           </div>
 
           <div class="bg-slate-900/70 rounded-xl p-3.5 border border-slate-800 space-y-1.5 text-xs text-slate-300">
             <div class="font-bold text-white">Як за 2 хв підключити свій Google-акаунт як БД:</div>
-            <ol class="list-decimal pl-4 space-y-1 text-[11px] text-slate-400">
+            <ol class="list-decimal pl-4 space-y-1 text-[13px] text-slate-400">
               <li>У Google Cloud Console увімкни <strong>Google Drive API</strong>.</li>
               <li>У розділі OAuth Consent Screen додай свій Gmail у Test Users та scope <code>.../auth/drive.file</code> (або <code>drive.appdata</code>).</li>
               <li>Створи OAuth Client ID (Web application), встав його вище і натисни «Увійти в Google».</li>
@@ -1144,15 +1176,15 @@
         <!-- Right: Android APK Packaging Kit (6 cols) -->
         <div class="lg:col-span-6 glass-card rounded-2xl p-4 sm:p-5 space-y-4 border border-emerald-500/30">
           <div>
-            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Android Package (.apk)</span>
+            <span class="text-[13px] font-bold uppercase tracking-wider text-emerald-400">Android Package (.apk)</span>
             <h2 class="text-base sm:text-lg font-bold text-white mt-0.5">Підготовка та збірка APK на телефон</h2>
           </div>
 
           <div class="grid grid-cols-2 gap-2 text-xs">
-            <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">✅ <strong>Single-File HTML5</strong><br><span class="text-[11px] opacity-80">Готовий для WebView / Capacitor</span></div>
-            <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">✅ <strong>Offline-First БД</strong><br><span class="text-[11px] opacity-80">Працює без інтернету + Drive Sync</span></div>
-            <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">✅ <strong>PWA Manifest</strong><br><span class="text-[11px] opacity-80">Вбудований + експорт manifest.json</span></div>
-            <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">✅ <strong>Мобільний UI</strong><br><span class="text-[11px] opacity-80">Адаптація під екран + вібрація</span></div>
+            <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">✅ <strong>Single-File HTML5</strong><br><span class="text-[13px] opacity-80">Готовий для WebView / Capacitor</span></div>
+            <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">✅ <strong>Offline-First БД</strong><br><span class="text-[13px] opacity-80">Працює без інтернету + Drive Sync</span></div>
+            <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">✅ <strong>PWA Manifest</strong><br><span class="text-[13px] opacity-80">Вбудований + експорт manifest.json</span></div>
+            <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">✅ <strong>Мобільний UI</strong><br><span class="text-[13px] opacity-80">Адаптація під екран + вібрація</span></div>
           </div>
 
           <div class="bg-slate-900/90 rounded-xl p-3.5 border border-slate-800 space-y-2.5 text-xs">
@@ -1173,14 +1205,14 @@
           <div class="bg-slate-950 rounded-xl p-3.5 border border-slate-800 space-y-2 text-xs">
             <div class="flex items-center justify-between">
               <span class="font-bold text-emerald-400">Команди для збірки справжнього .APK через Capacitor:</span>
-              <button id="btnCopyApkCommands" type="button" class="text-[11px] text-sky-400 hover:text-sky-300 underline">Копіювати</button>
+              <button id="btnCopyApkCommands" type="button" class="text-[13px] text-sky-400 hover:text-sky-300 underline">Копіювати</button>
             </div>
-            <pre id="apkCliCommands" class="text-[11px] font-mono text-slate-300 overflow-x-auto leading-relaxed">npm init -y && npm i @capacitor/core @capacitor/cli @capacitor/android
+            <pre id="apkCliCommands" class="text-[13px] font-mono text-slate-300 overflow-x-auto leading-relaxed">npm init -y && npm i @capacitor/core @capacitor/cli @capacitor/android
 npx cap init "SistemaDnya" "ua.yusyp.sistemadnya" --web-dir=www
 # Скопіюй цей HTML у www/index.html, потім:
 npx cap add android && npx cap sync android
 cd android && ./gradlew assembleDebug</pre>
-            <p class="text-[11px] text-slate-400">
+            <p class="text-[13px] text-slate-400">
               Готовий файл з'явиться у <code>android/app/build/outputs/apk/debug/app-debug.apk</code>. Або завантаж цей файл на будь-який HTTPS-хостинг (наприклад, GitHub Pages) і згенеруй APK без коду через <strong>PWABuilder.com</strong>.
             </p>
           </div>
@@ -1588,6 +1620,8 @@ cd android && ./gradlew assembleDebug</pre>
         }
       });
 
+      window.scrollTo(0, 0);
+
       if (tabId === 'exercises') {
         resize3DCanvas();
       } else if (tabId === 'camera') {
@@ -1680,7 +1714,7 @@ cd android && ./gradlew assembleDebug</pre>
           <input type="checkbox" data-warmup-id="${item.id}" ${checked ? 'checked' : ''} class="mt-0.5 rounded bg-slate-800 border-slate-600 text-emerald-500" />
           <div class="text-xs leading-snug">
             <div class="font-bold ${checked ? 'line-through text-emerald-300' : 'text-white'}">${item.title}</div>
-            <div class="text-[11px] text-slate-400 mt-0.5">${item.desc}</div>
+            <div class="text-[13px] text-slate-400 mt-0.5">${item.desc}</div>
           </div>
         `;
         row.querySelector('input').addEventListener('change', (e) => {
@@ -1717,12 +1751,12 @@ cd android && ./gradlew assembleDebug</pre>
       box.innerHTML = `
         <div class="flex items-center justify-between">
           <span class="text-xs font-bold text-emerald-400">${stepObj.nameUk} (${stepObj.nameEn})</span>
-          <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">
+          <span class="text-[13px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">
             Ціль: ${userProg.targetSets} × ${userProg.targetReps} ${stepObj.unit}
           </span>
         </div>
-        <p class="text-[11px] text-slate-300 leading-relaxed">${stepObj.tech}</p>
-        <div class="pt-1.5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-1 text-[11px]">
+        <p class="text-[13px] text-slate-300 leading-relaxed">${stepObj.tech}</p>
+        <div class="pt-1.5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-1 text-[13px]">
           <span class="text-sky-300 font-semibold">💡 План прогресії: ${userProg.statusNote}</span>
         </div>
       `;
@@ -1760,7 +1794,7 @@ cd android && ./gradlew assembleDebug</pre>
         btn.innerHTML = `
           <span class="text-xs font-mono font-bold">${h}:00</span>
           <span class="text-sm">${icon}</span>
-          <span class="text-[10px] font-medium truncate max-w-full">${statusLabel}</span>
+          <span class="text-[12px] font-medium truncate max-w-full">${statusLabel}</span>
         `;
         btn.addEventListener('click', () => {
           const order = ['pending', 'done', 'call'];
@@ -1794,22 +1828,22 @@ cd android && ./gradlew assembleDebug</pre>
 
       if (state.timerPausedAway) {
         stateLabel.textContent = '☕ ВІДІЙШОВ (ПАУЗА)';
-        stateLabel.className = 'text-[10px] font-bold uppercase tracking-wider text-purple-400';
+        stateLabel.className = 'text-[12px] font-bold uppercase tracking-wider text-purple-400';
         circle.setAttribute('stroke', '#a855f7');
         awayTitle.textContent = '▶️ Повернувся за стіл';
       } else if (state.onCallMode) {
         stateLabel.textContent = '🎧 НА ДЗВІНКУ (ТИХО)';
-        stateLabel.className = 'text-[10px] font-bold uppercase tracking-wider text-amber-400';
+        stateLabel.className = 'text-[12px] font-bold uppercase tracking-wider text-amber-400';
         circle.setAttribute('stroke', '#f59e0b');
         awayTitle.textContent = '☕ Відійшов / Обід';
       } else if (state.timerRunning) {
         stateLabel.textContent = 'АКТИВНА СЕСІЯ СИДІННЯ';
-        stateLabel.className = 'text-[10px] font-bold uppercase tracking-wider text-emerald-400';
+        stateLabel.className = 'text-[12px] font-bold uppercase tracking-wider text-emerald-400';
         circle.setAttribute('stroke', '#10b981');
         awayTitle.textContent = '☕ Відійшов / Обід';
       } else {
         stateLabel.textContent = 'ТАЙМЕР НА ПАУЗІ';
-        stateLabel.className = 'text-[10px] font-bold uppercase tracking-wider text-slate-400';
+        stateLabel.className = 'text-[12px] font-bold uppercase tracking-wider text-slate-400';
         circle.setAttribute('stroke', '#38bdf8');
         awayTitle.textContent = '☕ Відійшов / Обід';
       }
@@ -1833,11 +1867,11 @@ cd android && ./gradlew assembleDebug</pre>
       const text = document.getElementById('microRoutineText');
       if (state.onCallMode) {
         badge.textContent = '🎧 Тихий режим для мітингу (вправи сидячи в кадрі):';
-        badge.className = 'text-[11px] font-bold text-amber-400';
+        badge.className = 'text-[13px] font-bold text-amber-400';
         text.textContent = MICRO_ROUTINES_ON_CALL[state.microRoutineIndex % MICRO_ROUTINES_ON_CALL.length];
       } else {
         badge.textContent = '🏃 Рекомендований 3-хвилинний рух цієї години:';
-        badge.className = 'text-[11px] font-bold text-sky-400';
+        badge.className = 'text-[13px] font-bold text-sky-400';
         text.textContent = MICRO_ROUTINES_STANDING[state.microRoutineIndex % MICRO_ROUTINES_STANDING.length];
       }
 
@@ -1893,7 +1927,7 @@ cd android && ./gradlew assembleDebug</pre>
         btn.innerHTML = `
           <div class="flex items-center justify-between w-full">
             <span class="text-base">${ex.icon}</span>
-            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-emerald-400">Мій рів. ${userStep}</span>
+            <span class="text-[12px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-emerald-400">Мій рів. ${userStep}</span>
           </div>
           <div class="text-xs font-bold mt-1.5 truncate">${ex.nameUk}</div>
         `;
@@ -1926,7 +1960,7 @@ cd android && ./gradlew assembleDebug</pre>
         b.className = `py-2 px-1 rounded-xl border text-xs transition flex flex-col items-center justify-center ${cls}`;
         b.innerHTML = `
           <span>Рів. ${s.step}</span>
-          <span class="text-[9px] opacity-80 truncate max-w-full px-1">${s.step === 10 ? 'Майстер' : `Крок ${s.step}`}</span>
+          <span class="text-[11px] opacity-80 truncate max-w-full px-1">${s.step === 10 ? 'Майстер' : `Крок ${s.step}`}</span>
         `;
         b.addEventListener('click', () => {
           state.viewerStep = s.step;
@@ -1954,19 +1988,19 @@ cd android && ./gradlew assembleDebug</pre>
       const thirdTitle = stepObj.step === 10 ? 'Майстер (Elite)' : 'Прогресія (Перехід)';
       cards.innerHTML = `
         <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-center">
-          <div class="text-[10px] text-slate-400 uppercase font-semibold">Початковий</div>
+          <div class="text-[12px] text-slate-400 uppercase font-semibold">Початковий</div>
           <div class="text-sm font-mono font-bold text-white mt-1">${stepObj.beg.s} × ${stepObj.beg.r}</div>
-          <div class="text-[10px] text-slate-400">${stepObj.unit}</div>
+          <div class="text-[12px] text-slate-400">${stepObj.unit}</div>
         </div>
         <div class="p-2.5 rounded-xl bg-sky-500/10 border border-sky-500/30 text-center">
-          <div class="text-[10px] text-sky-300 uppercase font-semibold">Середній</div>
+          <div class="text-[12px] text-sky-300 uppercase font-semibold">Середній</div>
           <div class="text-sm font-mono font-bold text-sky-200 mt-1">${stepObj.int.s} × ${stepObj.int.r}</div>
-          <div class="text-[10px] text-sky-300/80">${stepObj.unit}</div>
+          <div class="text-[12px] text-sky-300/80">${stepObj.unit}</div>
         </div>
         <div class="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-center">
-          <div class="text-[10px] text-emerald-300 uppercase font-bold">${thirdTitle}</div>
+          <div class="text-[12px] text-emerald-300 uppercase font-bold">${thirdTitle}</div>
           <div class="text-sm font-mono font-extrabold text-emerald-200 mt-1">${stepObj.prog.s} × ${stepObj.prog.r}</div>
-          <div class="text-[10px] text-emerald-300/80">${stepObj.unit}</div>
+          <div class="text-[12px] text-emerald-300/80">${stepObj.unit}</div>
         </div>
       `;
 
@@ -2597,12 +2631,12 @@ cd android && ./gradlew assembleDebug</pre>
         row.innerHTML = `
           <div class="flex items-center justify-between text-xs">
             <span class="font-bold text-white">${ex.icon} ${ex.nameUk} — <span class="text-emerald-400">Рівень ${prog.currentStep}/10 (${stepObj.nameUk})</span></span>
-            <span class="font-mono text-[11px] px-2 py-0.5 rounded bg-slate-800 text-sky-300">Ціль: ${prog.targetSets}×${prog.targetReps} ${stepObj.unit}</span>
+            <span class="font-mono text-[13px] px-2 py-0.5 rounded bg-slate-800 text-sky-300">Ціль: ${prog.targetSets}×${prog.targetReps} ${stepObj.unit}</span>
           </div>
           <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
             <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-400" style="width: ${pct}%"></div>
           </div>
-          <div class="text-[11px] text-slate-400">${prog.statusNote}</div>
+          <div class="text-[13px] text-slate-400">${prog.statusNote}</div>
         `;
         container.appendChild(row);
       });
@@ -2622,14 +2656,14 @@ cd android && ./gradlew assembleDebug</pre>
         el.innerHTML = `
           <div class="flex items-center justify-between">
             <span class="font-bold text-white">${item.exName} (Рів. ${item.step}: ${item.stepName})</span>
-            <span class="text-[10px] font-mono text-slate-400">${item.date}</span>
+            <span class="text-[12px] font-mono text-slate-400">${item.date}</span>
           </div>
-          <div class="flex items-center gap-2 text-[11px] text-slate-300">
+          <div class="flex items-center gap-2 text-[13px] text-slate-300">
             <span>Підходи: <strong class="text-emerald-400 font-mono">${item.setsStr}</strong></span>
             <span>•</span>
             <span>${item.quality}</span>
           </div>
-          <div class="text-[11px] text-sky-300">${item.verdict}</div>
+          <div class="text-[13px] text-sky-300">${item.verdict}</div>
         `;
         list.appendChild(el);
       });
@@ -2892,7 +2926,7 @@ cd android && ./gradlew assembleDebug</pre>
           <input type="checkbox" ${chk ? 'checked' : ''} class="mt-0.5 rounded bg-slate-800 border-slate-600 text-teal-500" />
           <div class="text-xs">
             <div class="font-bold ${chk ? 'line-through text-teal-300' : 'text-white'}">${item.title}</div>
-            <div class="text-[11px] text-slate-400">${item.desc}</div>
+            <div class="text-[13px] text-slate-400">${item.desc}</div>
           </div>
         `;
         row.querySelector('input').addEventListener('change', (e) => {
@@ -2920,7 +2954,7 @@ cd android && ./gradlew assembleDebug</pre>
         b.className = `p-2 rounded-xl border text-center transition ${
           active ? 'bg-teal-500/20 border-teal-400 text-white font-bold' : 'bg-slate-900 border-slate-800 text-slate-300'
         }`;
-        b.innerHTML = `<div class="text-sm">${l.label}</div><div class="text-[10px]">${l.text}</div>`;
+        b.innerHTML = `<div class="text-sm">${l.label}</div><div class="text-[12px]">${l.text}</div>`;
         b.addEventListener('click', () => {
           state.stressLevel = l.lvl;
           renderSoulModule();
@@ -2944,7 +2978,7 @@ cd android && ./gradlew assembleDebug</pre>
         const d = document.createElement('div');
         d.className = 'p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs space-y-0.5';
         d.innerHTML = `
-          <div class="flex justify-between text-[10px] text-slate-400"><span>🕊️ Закриття дня</span><span>${r.date}</span></div>
+          <div class="flex justify-between text-[12px] text-slate-400"><span>🕊️ Закриття дня</span><span>${r.date}</span></div>
           <div class="text-emerald-300"><strong>Вдячність:</strong> ${r.gratitude}</div>
           <div class="text-slate-300"><strong>Відпущено:</strong> ${r.release}</div>
         `;
@@ -3115,9 +3149,9 @@ cd android && ./gradlew assembleDebug</pre>
         el.innerHTML = `
           <div>
             <div class="font-bold text-white">${w.title}</div>
-            <div class="text-[10px] text-slate-400">${w.date}</div>
+            <div class="text-[12px] text-slate-400">${w.date}</div>
           </div>
-          <span class="shrink-0 px-2 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 font-mono font-bold text-[11px]">${w.metric}</span>
+          <span class="shrink-0 px-2 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 font-mono font-bold text-[13px]">${w.metric}</span>
         `;
         winsBox.appendChild(el);
       });
