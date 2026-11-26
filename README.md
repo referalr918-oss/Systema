@@ -26,6 +26,18 @@
 
 Телефон, Повідомлення, Камера, Браузер (Samsung Internet / Chrome / Firefox), Налаштування, Галерея, Пошта (Gmail), Годинник, Магазин (Play / Galaxy Store).
 
+## Автоматизація встановлення на телефон
+
+**Готовий APK без локального збирання:** після кожного push у Actions гілки зʼявляється артефакт `systema-theme-apk` (workflow «Build theme APK») — скачайте `app-debug.apk` і встановіть на телефон.
+
+**Однією командою з ПК (телефон підʼєднаний по USB або Wi-Fi через Wireless debugging):**
+
+```bash
+bash tools/install_theme.sh
+```
+
+Скрипт збере APK (через `./gradlew` або системний `gradle`) і встановить його через `adb install -r`. На Galaxy S25 Ultra увімкніть: Налаштування → Про телефон → Номер збірки (7 натискань) → Параметри розробника → Wireless debugging.
+
 ## Регенерація іконок
 
 ```bash
