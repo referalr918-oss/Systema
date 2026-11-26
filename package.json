@@ -1,6 +1,6 @@
 {
   "name": "systema-dnya",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Система Дня — single-file HTML5 app (soul, movement, English, career) packaged as Android APK via Capacitor",
   "private": true,
   "scripts": {

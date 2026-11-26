@@ -9,8 +9,8 @@ Single-file HTML5 додаток (українською): **Душа & стій
 
 ## Готовий Android APK
 
-- **Завантажити:** [`releases/systema-dnya-1.0-debug.apk`](releases/systema-dnya-1.0-debug.apk) (debug-підпис, встановлюється напряму на телефон)
-- Package: `ua.yusyp.sistemadnya`, версія `1.0`, minSdk 24, targetSdk 36
+- **Завантажити:** [`releases/systema-dnya-1.1-debug.apk`](releases/systema-dnya-1.1-debug.apk) (debug-підпис, встановлюється напряму на телефон; зібрано з мобільним інтерфейсом: більший шрифт + нижня панель екранів)
+- Package: `ua.yusyp.sistemadnya`, версія `1.1` (versionCode 2), minSdk 24, targetSdk 36
 
 ## Джерело
 
