@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item component="ComponentInfo{com.samsung.android.dialer/com.samsung.android.dialer.DialtactsActivity}" drawable="ic_dialer" />
+    <item component="ComponentInfo{com.google.android.dialer/com.google.android.dialer.main.impl.MainActivity}" drawable="ic_dialer" />
+    <item component="ComponentInfo{com.android.dialer/com.android.dialer.main.impl.MainActivity}" drawable="ic_dialer" />
+
+    <item component="ComponentInfo{com.samsung.android.messaging/com.samsung.android.messaging.ui.MessagingMainActivity}" drawable="ic_messages" />
+    <item component="ComponentInfo{com.google.android.messaging/com.google.android.messaging.ui.conversationlist.ConversationListActivity}" drawable="ic_messages" />
+    <item component="ComponentInfo{com.android.messaging/com.android.messaging.ui.conversationlist.ConversationListActivity}" drawable="ic_messages" />
+
+    <item component="ComponentInfo{com.sec.android.app.camera/com.sec.android.app.camera.Camera}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.android.camera2/com.android.camera.CameraLauncher}" drawable="ic_camera" />
+    <item component="ComponentInfo{com.google.android.camera/com.google.android.apps.camera.legacy.app.activity.CameraActivity}" drawable="ic_camera" />
+
+    <item component="ComponentInfo{com.sec.android.app.sbrowser/com.sec.android.app.sbrowser.SbrowserMainActivity}" drawable="ic_browser" />
+    <item component="ComponentInfo{com.android.chrome/com.google.android.apps.chrome.Main}" drawable="ic_browser" />
+    <item component="ComponentInfo{org.mozilla.firefox/org.mozilla.gecko.BrowserApp}" drawable="ic_browser" />
+
+    <item component="ComponentInfo{com.android.settings/com.android.settings.Settings}" drawable="ic_settings" />
+
+    <item component="ComponentInfo{com.samsung.android.gallery/com.samsung.android.gallery.app.GalleryActivity}" drawable="ic_gallery" />
+    <item component="ComponentInfo{com.google.android.apps.photos/com.google.android.apps.photos.home.HomeActivity}" drawable="ic_gallery" />
+
+    <item component="ComponentInfo{com.google.android.gm/com.google.android.gm.ConversationListActivityGmail}" drawable="ic_mail" />
+    <item component="ComponentInfo{com.google.android.gm/com.google.android.gm.ConversationListActivity}" drawable="ic_mail" />
+
+    <item component="ComponentInfo{com.google.android.deskclock/com.google.android.deskclock.DeskClock}" drawable="ic_clock" />
+    <item component="ComponentInfo{com.sec.android.app.clockpackage/com.sec.android.app.clockpackage.ClockPackage}" drawable="ic_clock" />
+
+    <item component="ComponentInfo{com.android.vending/com.android.vending.AssetBrowserActivity}" drawable="ic_store" />
+    <item component="ComponentInfo{com.sec.android.app.samsungapps/com.sec.android.app.samsungapps.ui.IntroductionActivity}" drawable="ic_store" />
+</resources>
